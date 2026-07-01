@@ -1,0 +1,37 @@
+# ============================================================================
+#  careofid.com/.htaccess
+#  - Force HTTPS (if not already via cPanel)
+#  - Protect /include
+#  - Front controller routing to index.php
+#  - Custom 404
+# ============================================================================
+
+# Enable rewrites
+RewriteEngine On
+RewriteBase /
+
+# --- Force HTTPS (comment out if host already enforces) ---
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=302]
+
+# --- Security: deny direct access to /include ---
+RewriteRule ^include/ - [F,L]
+
+# --- Pass all non-file/non-dir to index.php (front controller) ---
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L,QSA]
+
+# --- Custom 404 page ---
+ErrorDocument 404 /404.php
+
+# --- Optional hardening headers (can also be set in PHP) ---
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: https://api.qrserver.com https://chart.googleapis.com; style-src 'self' 'unsafe-inline'; form-action 'self'; base-uri 'self';"
+  # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+
