@@ -1,0 +1,13 @@
+CareOfID Coding Rules
+
+- PHP 7.x compatible only.
+- Use PDO only for database access.
+- Do not use Composer unless owner approves.
+- Do not remove CSRF protection from POST forms.
+- Do not log passwords, reset tokens, verification codes, phone numbers, or private user data.
+- Preserve mobile WebView compatibility.
+- Keep global CSS in /assets/site.css when possible.
+- Do not change database schema without a migration note.
+- Run php -l on changed PHP files before final answer.
+- Before deployment, test:
+  /, /about, /privacy, /login, /signup, /account, /{coid}, /{coid}/{provider}
