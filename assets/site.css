@@ -1,0 +1,204 @@
+:root{
+  --fg:#222;
+  --muted:#666;
+  --accent:#0a58ca;
+  --bg:#fff;
+  --card:#ffffff;
+  --border:#e6e6e6;
+  --brand:#0b3d91;
+  --tag:#2a6f97;
+
+  /* desktop content width */
+  --content-width: 50%;
+  --content-max: 860px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--fg);
+  background:var(--bg);
+}
+
+
+
+/* Center-column helpers for text blocks that are outside .card */
+.dash-subnav,
+.flash,
+.page-flash,
+.notice,
+.alert,
+.msg,
+.message {
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/* Optional: center the "Update Handles · Account · Activities" line */
+.dash-subnav { text-align: center; }
+
+
+/* Safe-area + top breathing room on phones */
+@media (max-width:700px){
+  body{padding-top: env(safe-area-inset-top, 14px);}
+  :root{ --content-width: 92%; --content-max: 980px; }
+}
+
+/* Header */
+.brandbar{
+  border-bottom:1px solid var(--border);
+  background:#fff;
+}
+.brand-inner{
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 14px 0 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  text-align:center;
+}
+.brand-inner .brand-logo{
+  width:48px;height:48px;
+}
+.brand-inner .brand-text{
+  line-height:1.1;
+}
+.brand-inner .brand-title{
+  font-weight:800;
+  letter-spacing:.2px;
+  font-size:28px;
+  color: var(--brand);
+}
+.brand-inner .brand-tagline{
+  margin-top:4px;
+  font-size:14px;
+  font-weight:600;
+  color: var(--tag);
+}
+
+/* Nav */
+.topnav{
+  border-top:1px solid #f1f1f1;
+  background:#fff;
+}
+.topnav .nav-inner{
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  padding: 10px 0;
+  flex-wrap:wrap;
+}
+.topnav a{
+  color:#222;
+  text-decoration:none;
+  font-weight:500;
+  padding:8px 6px;
+}
+.topnav a:hover{ color: var(--accent); }
+
+/* Global content width: pages with or without .centercol */
+.centercol{
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 18px auto;
+}
+
+.card{
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 14px auto;
+  width: var(--content-width);
+  max-width: var(--content-max);
+}
+
+h1, h2, h3{
+  width: var(--content-width);
+  max-width: var(--content-max);
+  margin: 18px auto 8px;
+}
+h1{ font-size: 30px; }
+h2{ font-size: 20px; }
+h3{ font-size: 16px; }
+.muted{ color: var(--muted); }
+
+.row{ display:flex; align-items:center; justify-content:flex-start; gap:10px; }
+.row.wrap{ flex-wrap:wrap; }
+
+/* Forms */
+label{ display:block; margin:10px 0 6px; font-weight:600; }
+input[type=text], input[type=email], input[type=password], input[type=tel], input[type=url], select, textarea{
+  width:100%;
+  padding: 12px 12px;
+  border:1px solid #cfcfcf;
+  border-radius: 10px;
+  font-size:16px; /* keep >=16px to avoid iOS zoom */
+  background:#fff;
+}
+textarea{ min-height:90px; resize:vertical; }
+
+button, .btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid var(--accent);
+  background: var(--accent);
+  color:#fff;
+  cursor:pointer;
+  text-decoration:none;
+  font-weight:600;
+  font-size:15px;
+}
+button:hover, .btn:hover{ filter:brightness(0.95); }
+button.secondary, .btn.secondary{
+  background:#fff;
+  color: var(--accent);
+}
+
+/* Destructive action buttons */
+button.danger, .btn.danger{
+  background:#c62828;
+  border-color:#c62828;
+}
+button.danger:hover, .btn.danger:hover{
+  filter:brightness(0.95);
+}
+
+table{ width:100%; border-collapse:collapse; }
+th, td{ padding:8px 6px; border-bottom:1px solid #eee; }
+
+/* Footer */
+.site-footer{
+  border-top:1px solid var(--border);
+  margin-top:22px;
+  padding: 16px 0;
+  color: var(--muted);
+  font-size: 13px;
+  text-align:center;
+}
+
+/* Mobile tightening: less wasted space in menu/cards */
+@media (max-width:700px){
+  .brand-inner{ padding: 10px 0 8px; gap:10px; }
+  .brand-inner .brand-logo{ width:40px; height:40px; }
+  .brand-inner .brand-title{ font-size:22px; }
+  .brand-inner .brand-tagline{ font-size:12px; }
+
+  .topnav .nav-inner{ gap:12px; padding: 6px 0; }
+  .topnav a{ font-size:13px; padding:6px 4px; }
+
+  .card{ padding:12px; border-radius:12px; }
+  button, .btn{ padding:8px 10px; font-size:14px; }
+}
